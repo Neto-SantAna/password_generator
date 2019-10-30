@@ -1,18 +1,39 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1>{% block title %}Log In{% endblock %}</h1>
+    {% block title %}Log In{% endblock %}
 {% endblock %}
 
 {% block main %}
-    <form method="post">
+    <form method="post" class="needs-validation" novalidate>
         <div class="form-group">
             <input type="text" class="form-control" name="username" placeholder="Username" required/>
-        </div>
-       <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password" required/>
+            <div class="invalid-feedback">Username is required!</div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Log In</button>
+        <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Password" required/>
+            <div class="invalid-feedback">Password is required!</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary col-12">Log In</button>
     </form>
+
+    <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
 {% endblock %}
