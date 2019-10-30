@@ -4,3 +4,13 @@ instance/
 .env
 
 .vscode/
+
+*.pyc
+__pycache__/
+
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/

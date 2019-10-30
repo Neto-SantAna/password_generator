@@ -1,0 +1,4 @@
+include psswd/schema.sql
+graft psswd/static
+graft psswd/templates
+global-exclude *.pyc
