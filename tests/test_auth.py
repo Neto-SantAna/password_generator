@@ -5,7 +5,7 @@ from psswd.db import get_db
 
 
 def test_register(client, app):
-    assert client.get('/auth/register').satus_code == 200
+    assert client.get('/auth/register').status_code == 200
 
     response = client.post(
         '/auth/register',
@@ -25,7 +25,7 @@ def test_register(client, app):
     ('', '', 'a', '', b'Username and password are required!'),
     ('a', '', 'a', '', b'Confirm your password!'),
     ('a', '', 'a', 'a', b'Provide an email for possible recover of passwords!'),
-    ('a', 'a@a.com', 'a', 'b', b"Password doesn't match its confirmation!"),
+    ('a', 'a@a.com', 'a', 'b', b'Password does not match its confirmation!'),
     ('test', 'test@test.com', 'test', 'test', b'already registered'),
 ))
 

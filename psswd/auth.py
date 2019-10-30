@@ -27,10 +27,10 @@ def register():
         elif not email:
             error = 'Provide an email for possible recover of passwords!'
         elif password != psswd_cf:
-            error = "Password doesn't match its confirmation!"
+            error = 'Password does not match its confirmation!'
         elif db.execute(
             'SELECT id from users WHERE username = ?', (username,)
-        ).fetchone is not None:
+        ).fetchone() is not None:
             error = 'User {} is already registered!'.format(username)
 
         if error is None:
