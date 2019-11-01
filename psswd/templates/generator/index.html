@@ -14,7 +14,7 @@
         {% if {{ account['updated'] }} == 0 %}
             <a class="btn btn-primary" href="{{ url_for('generator.update', id=account['id']) }}">Update</a>
         {% else %}
-            <button type="button" class="btn btn-secondary" disabled>Updated</button>
+            <a class="btn btn-secondary" href="{{ url_for('generator.updated', id=account['id']) }}">Updated</a>
         {% endif %}
     </div>
     {% endfor %}

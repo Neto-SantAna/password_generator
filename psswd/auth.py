@@ -17,7 +17,6 @@ def register():
         password = request.form.get('password')
         psswd_cf = request.form.get('psswd_cf')
         email = request.form.get('email')
-        db = get_db()
         error = None
 
         if not username or not password:
@@ -28,17 +27,17 @@ def register():
             error = 'Provide an email for possible recover of passwords!'
         elif password != psswd_cf:
             error = 'Password does not match its confirmation!'
-        elif db.execute(
+        elif get_db().execute(
             'SELECT id from users WHERE username = ?', (username,)
         ).fetchone() is not None:
             error = 'User {} is already registered!'.format(username)
 
         if error is None:
-            db.execute(
+            get_db().execute(
                 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
                 (username, email, generate_password_hash(password))
             )
-            db.commit()
+            get_db().commit()
 
             return redirect(url_for('auth.login'))
 
@@ -52,9 +51,8 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        db = get_db()
         error = None
-        user = db.execute(
+        user = get_db().execute(
             'SELECT username, password FROM users WHERE username = ?', (username,)
         ).fetchone()
 
