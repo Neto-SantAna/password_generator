@@ -1,0 +1,7 @@
+* {margin: 0; padding: 0; border: 0;}
+body{font-family: "Open Sans", sans-serif;}
+ul, ol, li{list-style: none;}
+
+.content {
+    padding: 2.5vw;
+}
