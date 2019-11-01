@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'layout.html' %}
 
 {% block header %}
     {% block title %}Generator{% endblock %}
-    <a class="action" href="{{ url_for('generator.new_account') }}">New account</a>
+    <a class="btn btn-success" href="{{ url_for('generator.new_account') }}">New account</a>
 {% endblock %}
 
 {% block main %}
