@@ -5,3 +5,12 @@ ul, ol, li{list-style: none;}
 .content {
     padding: 2.5vw;
 }
+
+.account {
+    padding: 1vw;
+    margin-bottom: 1vw;
+    border-radius: 1vw;
+    background-color: rgb(214, 214, 214);
+    display: flex;
+    justify-content: space-around;
+}

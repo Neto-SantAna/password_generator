@@ -53,7 +53,7 @@ def login():
         password = request.form.get('password')
         error = None
         user = get_db().execute(
-            'SELECT username, password FROM users WHERE username = ?', (username,)
+            'SELECT * FROM users WHERE username = ?', (username,)
         ).fetchone()
 
         if user is None:

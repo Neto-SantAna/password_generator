@@ -8,13 +8,13 @@
 {% block main %}
     {% for account in accounts %}
     <div class="account">
-        {{ account['account'] }}
-        {{ account['password'] }}
-        {{ account['last_password'] }}
-        {% if {{ account['updated'] }} == 0 %}
-            <a class="btn btn-primary" href="{{ url_for('generator.update', id=account['id']) }}">Update</a>
+        <div>{{ account['account'] }}</div>
+        <div>{{ account['password'] }}</div>
+        <div>{{ account['last_password'] }}</div>
+        {% if account['updated'] == 0 %}
+            <a class="btn btn-primary" href="#">Update</a>
         {% else %}
-            <a class="btn btn-secondary" href="{{ url_for('generator.updated', id=account['id']) }}">Updated</a>
+            <a class="btn btn-secondary" href="#">Updated</a>
         {% endif %}
     </div>
     {% endfor %}

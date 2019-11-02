@@ -1,3 +1,6 @@
+import random
+import string
+
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, session
 )
@@ -21,7 +24,7 @@ def index():
         ' INNER JOIN users ON users.id = accounts.user_id'
         ' WHERE user_id = ?', (session.get('user_id'),)
     ).fetchall()
-
+        
     return render_template('generator/index.html', accounts=accounts)
 
 
@@ -37,20 +40,25 @@ def new_account():
             error = 'Account name required!'
         elif not psswd_min or not psswd_max:
             error = 'Set password boundaries!'
-        elif psswd_min < 2 or psswd_max > 25:
+        elif int(psswd_min) > int(psswd_max):
+            error = 'Password minimum length must be smaller than password maximum length!'
+        elif int(psswd_min) < 2 or int(psswd_max) > 25:
             error = 'Password boundaries must be between 2 and 25!'
-        elif psswd_min > psswd_max:
-            error = 'Password minimum length must be bigger than password maximum length!'
+
         elif get_db().execute(
             'SELECT id FROM accounts WHERE account = ? AND user_id = ?', (account, session.get('user_id'),)
         ).fetchone() is not None:
             error = 'Account already registered!'
         
         if error is None:
-            password = 'TODO'
+            psswd_len = random.SystemRandom().randint(int(psswd_min), int(psswd_max))
+            chars = string.ascii_lowercase + string.ascii_uppercase + string.punctuation + string.digits
+            password = ''.join(random.SystemRandom().choice(chars) for x in range(psswd_len))
+            last_password = 'TODO'
+
             get_db().execute(
-                'INSERT INTO accounts (user_id, account, password, updated) VALUES (?, ?, ?, ?)',
-                (session.get('user_id'), account, password, 1)
+                'INSERT INTO accounts (user_id, account, password, last_password, updated) VALUES (?, ?, ?, ?, ?)',
+                (session.get('user_id'), account, password, last_password, 1)
             )
             get_db().commit()
 
