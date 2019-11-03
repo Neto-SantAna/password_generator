@@ -11,11 +11,20 @@
         <div>{{ account['account'] }}</div>
         <div>{{ account['password'] }}</div>
         <div>{{ account['last_password'] }}</div>
-        {% if account['updated'] == 0 %}
-            <a class="btn btn-primary" href="#">Update</a>
+        {% if account['updated'] == 1 %}
+            <form action="{{ url_for('generator.update', id=account['id']) }}" method="POST">
+                <input type="submit" class="btn btn-primary" value="Update" onclick="return confirm('Are you sure you wanna update your password?');"/>
+            </form>
         {% else %}
-            <a class="btn btn-secondary" href="#">Updated</a>
+            <form action="{{ url_for('generator.updated', id=account['id']) }}" method="POST">
+                <input type="submit" class="btn btn-secondary" value="Updated" onclick="return confirm('Are you sure you changed you password manually? Only confirm it if you did!');"/>
+            </form>
         {% endif %}
+        <div>
+            <form action="{{ url_for('generator.delete', id=account['id']) }}" method="POST">
+                <input type="submit" class="close" value="&times;" onclick="return confirm('Are you sure you wanna delete this account?');"/>
+            </form>
+        </div>
     </div>
     {% endfor %}
 {% endblock %}
