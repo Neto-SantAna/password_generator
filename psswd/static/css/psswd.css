@@ -12,14 +12,14 @@ ul, ol, li{list-style: none;}
     padding: 1vw;
     margin-bottom: 1vw;
     border-radius: 1vw;
-    background-color: rgb(214, 214, 214);
+    background-color: rgb(240, 240, 240);
     display: flex;
     justify-content: space-around;
 }
 
 .account_data {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .account_ctrl {
@@ -28,5 +28,6 @@ ul, ol, li{list-style: none;}
 }
 
 #close {
-    background-color: rgb(214, 214, 214);
+    background-color: rgb(240, 240, 240);
+    color: red;
 }
