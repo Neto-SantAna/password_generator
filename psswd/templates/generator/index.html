@@ -7,24 +7,41 @@
 
 {% block main %}
     {% for account in accounts %}
-    <div class="account">
-        <div>{{ account['account'] }}</div>
-        <div>{{ account['password'] }}</div>
-        <div>{{ account['last_password'] }}</div>
-        {% if account['updated'] == 1 %}
-            <form action="{{ url_for('generator.update', id=account['id']) }}" method="POST">
-                <input type="submit" class="btn btn-primary" value="Update" onclick="return confirm('Are you sure you wanna update your password?');"/>
-            </form>
-        {% else %}
-            <form action="{{ url_for('generator.updated', id=account['id']) }}" method="POST">
-                <input type="submit" class="btn btn-secondary" value="Updated" onclick="return confirm('Are you sure you changed you password manually? Only confirm it if you did!');"/>
-            </form>
-        {% endif %}
-        <div>
-            <form action="{{ url_for('generator.delete', id=account['id']) }}" method="POST">
-                <input type="submit" class="close" value="&times;" onclick="return confirm('Are you sure you wanna delete this account?');"/>
-            </form>
+    <nav class="navbar navbar-expand-md navbar-light bg-light account">
+        <div class="navbar-brand">{{ account['account'] }}</div>
+
+        <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"
+        class="navbar-toggler" data-target="#nav{{ account['id'] }}" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="nav{{ account['id'] }}">
+            <ul class="navbar-nav mr-auto mt-2 col-9 account_data">
+                <li class="nav-item">Password:<br/>{{ account['password'] }}</li>
+                <li class="nav-item">Last Password:<br/>{{ account['last_password'] }}</li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto mt-2 col-3 account_ctrl">
+                {% if account['updated'] == 1 %}
+                <li class="nav-item">
+                    <form action="{{ url_for('generator.update', id=account['id']) }}" method="POST">
+                        <input type="submit" class="btn btn-primary" value="Update" onclick="return confirm('Are you sure you wanna update your password?');"/>
+                    </form>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <form action="{{ url_for('generator.updated', id=account['id']) }}" method="POST">
+                        <input type="submit" class="btn btn-secondary" value="Updated" onclick="return confirm('Are you sure you changed you password manually? Only confirm it if you did!');"/>
+                    </form>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <form action="{{ url_for('generator.delete', id=account['id']) }}" method="POST">
+                        <input id="close" type="submit" class="close" value="&times;" onclick="return confirm('Are you sure you wanna delete this account?');"/>
+                    </form>
+                </li>
+            </ul>
         </div>
-    </div>
+    </nav>
     {% endfor %}
 {% endblock %}

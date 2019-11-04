@@ -2,9 +2,11 @@
 body{font-family: "Open Sans", sans-serif;}
 ul, ol, li{list-style: none;}
 
+
 .content {
     padding: 2.5vw;
 }
+
 
 .account {
     padding: 1vw;
@@ -13,4 +15,18 @@ ul, ol, li{list-style: none;}
     background-color: rgb(214, 214, 214);
     display: flex;
     justify-content: space-around;
+}
+
+.account_data {
+    display: flex;
+    justify-content: space-around;
+}
+
+.account_ctrl {
+    display: inline-flex;
+    justify-content: space-around;
+}
+
+#close {
+    background-color: rgb(214, 214, 214);
 }
