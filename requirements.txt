@@ -5,14 +5,14 @@ colorama==0.4.1
 coverage==4.5.4
 Flask==1.1.1
 gunicorn==19.9.0
+importlib-metadata==0.23
 itsdangerous==1.1.0
 Jinja2==2.10.3
 MarkupSafe==1.1.1
 more-itertools==7.2.0
 packaging==19.2
 pluggy==0.13.0
-# Editable Git install with no remote (psswd==1.0)
--e c:\users\vm-st-03\prog\password_generator
+-e git+https://github.com/Neto-SantAna/password_generator@f720995fda69075fd29c16d14abc9c7761d30704#egg=psswd
 py==1.8.0
 pyparsing==2.4.2
 pytest==5.2.2
@@ -20,3 +20,4 @@ python-dotenv==0.10.3
 six==1.12.0
 wcwidth==0.1.7
 Werkzeug==0.16.0
+zipp==0.6.0
