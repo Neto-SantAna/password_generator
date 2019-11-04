@@ -62,7 +62,7 @@ def new_account():
 
             get_db().execute(
                 'INSERT INTO accounts (user_id, account, psswd_min, psswd_max, password, last_password, updated) VALUES (?, ?, ?, ?, ?, ?, ?)',
-                (session.get('user_id'), account, psswd_min, psswd_max, password, last_password, 1)
+                (session.get('user_id'), account, psswd_min, psswd_max, password, last_password, 0)
             )
             get_db().commit()
 
