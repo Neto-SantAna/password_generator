@@ -76,6 +76,7 @@ def new_account():
 @bp.route('/<int:id>/updated', methods=['POST'])
 @login_required
 def updated(id):
+    get_account(id)
     get_db().execute(
         'UPDATE accounts SET updated = 1 WHERE id = ?', (id,)
     )
@@ -103,6 +104,7 @@ def update(id):
 @bp.route('/<int:id>/delete', methods=['POST'])
 @login_required
 def delete(id):
+    get_account(id)
     get_db().execute('DELETE FROM accounts WHERE id = ?', (id,))
     get_db().commit()
 
