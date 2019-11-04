@@ -5,3 +5,5 @@ Password_generator is a simple webapp to generate passwords for multiple account
 
 Check a demo of the app at: [Password_Generator](https://salty-beyond-14590.herokuapp.com/)<br/>
 **The demo has no persistent database and your accounts will eventually vanish!**
+
+_**E-mail functions in process**_
