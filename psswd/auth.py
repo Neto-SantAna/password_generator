@@ -1,10 +1,8 @@
 import functools
 
-from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
-)
-from werkzeug.security import check_password_hash, generate_password_hash
+from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
 from psswd.db import get_db
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -72,6 +70,12 @@ def login():
     return render_template('auth/login.html')
 
 
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
@@ -82,9 +86,3 @@ def load_logged_in_user():
         g.user = get_db().execute(
             'SELECT * FROM users WHERE id = ?', (user_id,)
         ).fetchone()
-
-
-@bp.route('/logout')
-def logout():
-    session.clear()
-    return redirect(url_for('index'))
