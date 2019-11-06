@@ -1,15 +1,11 @@
 import random
 import string
 
-from flask import (
-    abort, Blueprint, flash, g, redirect, render_template, request, session, url_for
-)
+from flask import abort, Blueprint, flash, g, redirect, render_template, request, session, url_for
 from psswd import create_app
-from werkzeug.exceptions import abort
-from psswd.helpers import (
-    login_required, get_account
-)
 from psswd.db import get_db
+from psswd.helpers import get_account, login_required
+from werkzeug.exceptions import abort
 
 
 bp = Blueprint('generator', __name__)

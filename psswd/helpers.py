@@ -1,10 +1,8 @@
 import functools
 
-from flask import(
-    abort, g, redirect, url_for
-)
-from werkzeug.exceptions import abort
+from flask import abort, g, redirect, url_for
 from psswd.db import get_db
+from werkzeug.exceptions import abort
 
 
 def get_account(id, check_user=True):
